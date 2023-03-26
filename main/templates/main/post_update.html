@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Post
+{% endblock title %}
+
+{% block css %}
+    <style>
+        body {
+            background-color: rgb(212, 212, 212);
+        }
+
+        .form {
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            margin: 7% 20% 0 18%;
+            background-color: white;
+        }
+
+        .form .image {
+            border-radius: 20px;
+            float: left;
+            width: 30%;
+            height: 100%;
+            background-color: rgb(212, 212, 212);
+            padding: 10px;
+        }
+
+        .form input[type=text]:focus {
+            border: 3px solid rgb(191, 191, 191);
+        }
+
+        .form input[type=text] {
+            width: 80%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form textarea {
+            width: 80%;
+            border: 1px solid rgb(173, 173, 173);
+            border-bottom: 3px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form textarea:focus {
+            height: 130px;
+        }
+
+        .form input[type=submit] {
+            margin: 10px 0 0 0;
+            width: 30%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form select {
+            width: 30%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form #id_author {
+            visibility: hidden;
+        }
+
+        .form label[for=id_author] {
+            visibility: hidden;
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <div class="form">
+        <h1>Update post</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update" >
+        </form>
+    </div>
+{% endblock content %}

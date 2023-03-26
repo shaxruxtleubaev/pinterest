@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My profile
+{% endblock title %}
+
+{% block css %}
+    <style>
+        .profile_card {
+            padding: 20px;
+            border-radius: 20px;
+            background-color: rgba(173, 173, 173, 0.596);
+            width: 60%;
+            margin: 10% 20% 0 20%;
+        }
+
+        .name {
+            width: 100%;
+            text-align: center;
+        }     
+        
+        .photo {
+            margin: 0 45% 0 45%;
+            width: 10%;
+            text-align: center;
+        }
+
+        .logout {
+            padding: 10px 20px 10px 20px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 20px;
+            border: none;
+            color: white;
+            transition: 0.8s;
+        }
+
+        .logout:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .joined {
+            float: right;
+        }
+
+        #your-posts {
+            width: 100%;
+            text-align: center;
+        }
+
+        .container {
+            margin: 80px 5% 0 5%;
+            column-count: 4;
+            column-gap: 10px;
+            width: 90%;
+        }
+
+        .imgg{
+            transition: 0.3s;
+            border-radius: 10px;
+            width: 98%;
+            margin: 5px 0 5px 0;
+        }
+        
+        .imgg:hover{
+            overflow: hidden;
+            transform: scale(1.03);
+            opacity: 70%;
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <div class="profile_card">
+        <a href="{% url 'logout' %}">
+            <button class="logout">
+                Log out
+            </button>
+        </a>
+        <h6 class="joined">Created in: {{ account.date_joined }}</h6>
+        <img class="photo" src="https://cdn-icons-png.flaticon.com/512/6542/6542931.png" alt="">
+        <h3 class="name">{{account.username}}</h3>
+        <p id="your-posts">Your posts</p>
+
+        <div class="container">
+            {% for post in post %} 
+                <a href="/posts/{{post.id}}"><img class="imgg" src="{{post.image.url}}" alt=""></a>
+            {% endfor %}
+        </div>
+
+        </div>
+    
+{% endblock content %}

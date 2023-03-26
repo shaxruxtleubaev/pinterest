@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Pinterest
+{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock links %}
+
+{% block css %}
+    <style>
+        .container {
+            margin: 80px 5% 0 5%;
+            column-count: 4;
+            column-gap: 10px;
+            width: 90%;
+        }
+
+        .imgg{
+            transition: 0.3s;
+            border-radius: 10px;
+            width: 98%;
+            margin: 5px 0 5px 0;
+        }
+        
+        .imgg:hover{
+            overflow: hidden;
+            transform: scale(1.03);
+            opacity: 70%;
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <div class="container">
+        {% for post in posts %}
+            <a href="/posts/{{post.id}}/"><img class="imgg" src="{{post.image.url}}" alt=""></a>
+        {% endfor %}
+    </div>
+{% endblock content %}

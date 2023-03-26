@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}   
+    Sign Up
+{% endblock title %}
+
+{% block css %}
+    <style>
+        body {
+            font-size: 12px;
+        }
+    
+        .signup {
+            padding: 30px;
+            background-color:rgba(255, 255, 255, 0.829);
+            border-radius: 20px;
+            width: 35%;
+            margin: 10% 32.5% 5% 31%;
+            opacity: 90%;
+        }
+
+        input[type=text], input[type=password]{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        height: 30px;
+        }
+
+        input[type=text]:focus {
+            background-color: rgb(105, 214, 102);
+        }
+
+        input[type=password]:focus {
+            background-color: rgb(105, 214, 102);
+        }
+
+        button[type=submit] {
+            border-color: rgb(178, 232, 176);
+            width: 20%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        button[type=submit]:hover {
+            background-color: rgb(105, 214, 102);
+            color: white;
+        }
+
+        body {
+            margin: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+            background: linear-gradient(315deg, rgb(93, 0, 101) 3%, rgb(206, 204, 60) 38%, rgb(48, 238, 70) 68%, rgb(25, 255, 243) 98%);
+            animation: gradient 10s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+
+            25% {
+                transform: translateX(-25%);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+
+            75% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(1);
+            }
+        }
+    </style>
+{% endblock css %}
+
+{% block content %}
+    
+    <form method="post" class="signup">
+        <h2>Sign Up</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+{% endblock content %}

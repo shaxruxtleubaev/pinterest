@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Post
+{% endblock title %}
+
+{% block css %}
+    <style>
+        body {
+            background-color: rgb(212, 212, 212);
+        }
+
+        .form {
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            margin: 7% 20% 0 18%;
+            background-color: white;
+            height: 800px;
+        }
+
+        .form .left {
+            border-radius: 20px;
+            float: left;
+            width: 30%;
+            height: 300px;
+            background-color: rgb(212, 212, 212);
+            padding: 10px;
+        }
+
+        .form .left .image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .form .left #id_image {
+            height: 100%;
+            width: 100%;
+        }
+
+        .form .right {
+            float: right;
+            width: 65%;
+        }
+
+        .form input[type=text]:focus {
+            border: 3px solid rgb(191, 191, 191);
+        }
+
+        .form input[type=text] {
+            width: 80%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form textarea {
+            width: 80%;
+            border: 1px solid rgb(173, 173, 173);
+            border-bottom: 3px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form textarea:focus {
+            height: 130px;
+        }
+
+        .form input[type=submit] {
+            margin: 10px 0 0 0;
+            width: 30%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        .form .create {
+            width: 50%;
+            float: right;
+        }
+
+        .form select {
+            width: 30%;
+            border: none;
+            border-bottom: 2px solid rgb(173, 173, 173);
+            height: 30px;
+        }
+
+        /* .form #id_author {
+            visibility: hidden;
+        }
+
+        .form label[for=id_author] {
+            visibility: hidden;
+        } */
+
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <div class="form">
+        <h1>Add post</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="left">
+                <div class="image">
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class="right">
+                <h2>Title of the post <small>(optional)</small></h2>
+                {{ form.title }}
+                <h3>Description <small>(optional)</small></h3>
+                {{ form.description }}
+                <h4>Choose category</h4>
+                {{ form.category }}
+                <input class="create" type="submit" value="Create" >
+            </div>
+    
+            
+        </form>
+    </div>
+{% endblock content %}

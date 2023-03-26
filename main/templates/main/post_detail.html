@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    AA
+{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock links %}
+
+{% block scripts %}
+    <script>
+
+    </script>
+{% endblock scripts %}
+
+{% block css %}
+    <style>
+        .container {
+            margin: 100px 5% 100px 5%;
+            border-radius: 20px;
+            box-shadow:
+                var(--shadow-6),
+                0 2rem 2rem rgb(0 0 0 / 50%);
+        }
+
+        .container img {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            width: 40%;
+            height: 100%;
+            float: left;
+            cursor: pointer;
+        }
+
+        .container img:hover {
+            transition: 0.5s;
+            opacity: 0.7;
+        }
+
+        .right {
+            width: 60%;
+            float: right;
+        }
+
+        .options {
+            float: left;
+            margin: 10px 0 0 20px;
+            width: 55%;
+        }
+
+        .options i{
+            margin: 0 7px 0 0;
+            
+        }
+
+        .options i:hover{
+            margin: 0 5px 0 0;
+            overflow: hidden;
+            transform: scale(1.5);
+            opacity: 70%;
+            transition: 0.5s;
+        }
+
+        .title {
+            width: 55%;
+            margin: 100px;
+            height: 100px;
+            
+        }
+
+        .title h1{
+            float: left;
+            margin: 10px 0 0 10px;
+            width: 100%;
+        }
+
+        .title h5 {
+            float: left;
+            margin: 10px 0 0 10px;
+            width: 100%;
+        }
+
+        .title p{
+            margin: 10px;
+        }
+
+        .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        }
+
+        .tooltip a {
+            text-decoration: none;
+            color: white;
+            border-radius: 20px;
+            background-color: rgb(43, 0, 255);
+            padding: 10px;
+        }
+
+        .tooltip a:hover {
+            background: rgb(135, 135, 135);
+            color: white;
+        }
+
+        .edit {
+            color: white;
+            border: none;
+            width: 80px;
+            float: right;
+            background-color:rgba(1, 112, 1, 0.719);
+            border-radius: 30px;
+            height: 40px;
+            border-start-start-radius: 10px;
+        }
+
+        .edit:hover {
+            color: white;
+            background: rgba(0, 42, 0, 0.719);
+        }
+
+        .delete {
+            color: white;
+            border: none;
+            width: 80px;
+            float: right;
+            background-color:rgba(185, 0, 0, 0.719);
+            border-radius: 30px;
+            height: 40px;
+            border-start-start-radius: 10px;
+        }
+
+        .delete:hover {
+            color: white;
+            background: rgba(116, 0, 0, 0.719);
+        }
+        </style>
+{% endblock css %}
+
+{% block content %}
+    <div class="container">
+        <img src="{{ post.image.url }}" alt="">
+        <div class="right">
+            <div class="options">
+                <div class="tooltip">
+                    <a href="{{ post.image.url }}" download="">Download image</a>
+                </div> 
+                {% if post.author == request.user %}
+                    <a href="/posts/{{post.id}}/delete">
+                        <button class="delete">
+                            Delete
+                        </button>
+                    </a>
+                    <a href="/posts/{{post.id}}/update">
+                        <button class="edit">
+                            Edit
+                        </button>
+                    </a>
+                {% elif user.is_staff %}
+                    <a href="/posts/{{post.id}}/delete">
+                        <button class="delete">
+                            Delete
+                        </button>
+                    </a>
+                    <a href="/posts/{{post.id}}/update">
+                        <button class="edit">
+                            Edit
+                        </button>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="title">
+                <p>{{ post.posted_date }}</p>
+                <h5>Poster: {{post.author}}</h5>
+
+                {% if post.title %}
+                    <h1>{{post.title}}</h1>
+                {% else %}
+                {% endif %}
+
+                {% if post.description %}
+                    <h5>{{post.description}}</h5>
+                {% else %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
