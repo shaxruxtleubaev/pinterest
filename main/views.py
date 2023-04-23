@@ -44,9 +44,9 @@ class TitleDescriptionResulsView(ListView):
         )
         return object_list
 
-def account(request):
+def account(request, pk):
     post = Post.objects.filter(author=request.user)
-    account = User.objects.get(username=request.user)
+    account = User.objects.get(username=request.user, id=pk)
     context = {
         'account': account,
         'post': post
